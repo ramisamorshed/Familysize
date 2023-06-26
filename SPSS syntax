@@ -50,3 +50,82 @@ DATASET ACTIVATE DataSet1.
  
 SAVE OUTFILE='D:\Users\THINKPAD\Desktop\with caseid and deleted cases.sav' 
   /COMPRESSED
+COMPUTE health_decision=0. 
+EXECUTE.  
+IF  (V743A <= 3) health_decision=1. 
+EXECUTE.
+
+
+COMPUTE all_decisionmaking=0. 
+EXECUTE.  
+IF  (V743A <= 3 & V743B <= 3 & V743D <= 3 & V743F <= 3) all_decisionmaking=1. 
+EXECUTE.  
+DATASET ACTIVATE DataSet1. 
+ 
+SAVE OUTFILE='D:\Users\THINKPAD\Desktop\with caseid and deleted cases.sav' 
+  /COMPRESSED.  
+DATASET ACTIVATE DataSet1. 
+ 
+SAVE OUTFILE='D:\Users\THINKPAD\Desktop\with caseid and deleted cases.sav' 
+  /COMPRESSED.  
+COMPUTE beating=0. 
+EXECUTE.  
+IF  (V744A = 1 | V744B = 1 | V744C = 1 | V744D = 1 | V744E = 1) beating=1. 
+EXECUTE.  
+DATASET ACTIVATE DataSet1. 
+ 
+SAVE OUTFILE='D:\Users\THINKPAD\Desktop\with caseid and deleted cases.sav' 
+  /COMPRESSED.  
+FREQUENCIES VARIABLES=V614 
+  /ORDER=ANALYSIS.
+
+
+
+COMPUTE had_more_child_than_ideal=0. 
+EXECUTE. 
+IF  ((V218 - V614) > 0) had_more_child_than_ideal=1. 
+EXECUTE. 
+DATASET ACTIVATE DataSet1. 
+ 
+SAVE OUTFILE='D:\Users\THINKPAD\Desktop\with caseid and deleted cases.sav' 
+  /COMPRESSED. 
+ 
+SAVE OUTFILE='D:\Users\THINKPAD\Desktop\35 with caseid and deleted cases.sav' 
+  /COMPRESSED. 
+FILTER OFF. 
+USE ALL. 
+SELECT IF (V012 >= 35). 
+EXECUTE. 
+DATASET ACTIVATE DataSet1. 
+ 
+SAVE OUTFILE='D:\Users\THINKPAD\Desktop\35 with caseid and deleted cases.sav' 
+  /COMPRESSED.
+
+COMPUTE had_more_child_than_ideal=0. 
+EXECUTE. 
+IF  ((V218 - V614) > 0) had_more_child_than_ideal=1. 
+EXECUTE. 
+DATASET ACTIVATE DataSet1. 
+ 
+SAVE OUTFILE='D:\Users\THINKPAD\Desktop\with caseid and deleted cases.sav' 
+  /COMPRESSED. 
+ 
+SAVE OUTFILE='D:\Users\THINKPAD\Desktop\35 with caseid and deleted cases.sav' 
+  /COMPRESSED. 
+FILTER OFF. 
+USE ALL. 
+SELECT IF (V012 >= 35). 
+EXECUTE. 
+DATASET ACTIVATE DataSet1. 
+ 
+SAVE OUTFILE='D:\Users\THINKPAD\Desktop\35 with caseid and deleted cases.sav' 
+  /COMPRESSED.  
+COMPUTE edu=V106. 
+EXECUTE.  
+IF  (V106 >= 2) edu=2. 
+EXECUTE.  
+COMPUTE husband_edu=V701. 
+EXECUTE.  
+IF  (V701 >= 2) husband_edu=2. 
+EXECUTE.
+
